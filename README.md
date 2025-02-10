@@ -108,12 +108,12 @@ SQL Fiddle: [Click Here](https://sqlfiddle.com/postgresql/online-compiler?id=4f1
 
 ## **7. Indexing**
 ### **Assignment 14: Creating and Using Indexes**
-- Create a table `large_dataset(id, name, value)` with **1 million rows**.
+- Create a table `large_dataset(id, name, value)` with **1000 rows**.
 - Run a `SELECT WHERE` query **without an index** and measure time.
 - Create an **index on the `name` column** and rerun the query.
 - Compare the **performance improvements**.
 
-SQL Fiddle: [Click Here](https://sqlfiddle.com/postgresql/online-compiler?id=57d80ef5-3627-4132-a0b2-a05dd020849b)
+SQL Fiddle: [Click Here](https://sqlfiddle.com/postgresql/online-compiler?id=5d79fb52-1918-4baf-85ed-b3155271638a) 
 
 ### **Assignment 15: Unique Index for Data Integrity**
 - Create a `users(user_id, username, email)` table.
