@@ -2,27 +2,26 @@
 -- Create a table large_dataset(id, name, value)
 CREATE TABLE large_dataset (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    value INT NOT NULL
+    name TEXT NOT NULL,
+    value INT
 );
 
+
 INSERT INTO large_dataset (name, value)
-SELECT 
-    md5(random()::TEXT), 
-    floor(random() * 1000)::INT  
-FROM generate_series(1, 1000000);
+SELECT
+    'Name_' || generate_series(1, 1000), 
+    random() * 1000
+FROM generate_series(1, 1000);
 
-SELECT * FROM large_dataset;
+-- Run a SELECT WHERE query without an index and measure the time taken.
 
-EXPLAIN ANALYZE 
-SELECT * FROM large_dataset 
-WHERE name = 'value';
+SELECT * FROM large_dataset WHERE name = 'Name_500';
 
--- Create an index on the name column and run the query again.
-CREATE INDEX idx_large_dataset_name ON large_dataset (name);
+-- 3 milli seconds
 
+CREATE INDEX idx_large_dataset_name ON large_dataset(name);
 
-SELECT * FROM large_dataset 
-WHERE name = 'value';
+-- Create an index on the name column and run the query again. 
+SELECT * FROM large_dataset WHERE name = 'Name_500'; 
 
-
+-- 2 milli seconds
